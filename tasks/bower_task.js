@@ -44,10 +44,7 @@ module.exports = function(grunt) {
   }
 
   function install(options, callback) {
-    var config = {
-      cwd: options.cwd
-    };
-    bower.commands.install([], options.bowerOptions, config)
+    bower.commands.install([], options.bowerOptions, options.config)
       .on('log', function(result) {
         log(['bower', result.id.cyan, result.message].join(' '));
       })
@@ -78,7 +75,8 @@ module.exports = function(grunt) {
         install: true,
         verbose: false,
         copy: true,
-        bowerOptions: {}
+        bowerOptions: {},
+        config: {}
       }),
       add = function(successMessage, fn) {
         tasks.push(function(callback) {
